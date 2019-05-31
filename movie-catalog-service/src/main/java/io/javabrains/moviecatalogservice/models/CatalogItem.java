@@ -1,13 +1,24 @@
 package io.javabrains.moviecatalogservice.models;
 
-public class CatalogItem {
-    private String name;
-    private String desc;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class CatalogItem implements HasId {
+    
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
+	private String name;
+    private String description;
     private int rating;
 
     public CatalogItem(String name, String desc, int rating) {
         this.name = name;
-        this.desc = desc;
+        this.description = desc;
         this.rating = rating;
     }
 
@@ -19,15 +30,25 @@ public class CatalogItem {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
-    }
+   
+    @Override
+    public Long getId() {
+		return id;
+	}
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public int getRating() {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getRating() {
         return rating;
     }
 
